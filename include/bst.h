@@ -94,7 +94,7 @@ class BST {
 
     int depthTree(Node* root) {
         if (root == nullptr)
-            return 0;
+            return -1;
         int right = depthTree(root->right);
         int left = depthTree(root->left);
         if (right >= left)
