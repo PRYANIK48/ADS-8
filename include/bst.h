@@ -22,32 +22,32 @@ class BST {
             root->left = nullptr;
             root->right = nullptr;
             root->count = 1;
-        } else if (root->data > data)
+        } else if (root->data > data) {
             root->left = addNode(root->left, data);
-        else if (root->data < data)
+        }
+        else if (root->data < data) {
             root->right = addNode(root->right, data);
-        else
+        } else {
             root->count++;
+        }
         return root;
     }
 
     Node* delNode(Node* root, T data) {
-        if (root == nullptr)
+        if (root == nullptr) {
             return root;
-        else if (data < root->data)
+        } else if (data < root->data) {
             root->left = delNode(root->left, data);
-        else if (data > root->data)
+        } else if (data > root->data) {
             root->right = delNode(root->right, data);
-        else
-        {
+        } else {
             Node* p = root;
             if (root->right == nullptr) {
                 root = root->left;
             }
-            else if (root->left == nullptr)
+            else if (root->left == nullptr) {
                 root = root->right;
-            else
-            {
+            } else {
                 Node* v = root->left;
                 if (v->right != nullptr) {
                     while (v->right->right != nullptr)
@@ -97,6 +97,7 @@ class BST {
     int depthTree(Node* root) {
         if (root == nullptr)
             return 0;
+     
         int right = depthTree(root->right);
         int left = depthTree(root->left);
         if (right >= left)
