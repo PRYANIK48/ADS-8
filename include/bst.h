@@ -3,10 +3,11 @@
 #define INCLUDE_BST_H_
 
 #include <vector>
+#include <utility>
 
 template<typename T>
 class BST {
-private:
+ private:
     struct Node {
         T data;
         int count;
@@ -21,8 +22,7 @@ private:
             root->left = nullptr;
             root->right = nullptr;
             root->count = 1;
-        }
-        else if (root->data > data)
+        } else if (root->data > data)
             root->left = addNode(root->left, data);
         else if (root->data < data)
             root->right = addNode(root->right, data);
@@ -38,14 +38,16 @@ private:
             root->left = delNode(root->left, data);
         else if (data > root->data)
             root->right = delNode(root->right, data);
-        else {
+        else
+        {
             Node* p = root;
             if (root->right == nullptr) {
                 root = root->left;
             }
             else if (root->left == nullptr)
                 root = root->right;
-            else {
+            else
+            {
                 Node* v = root->left;
                 if (v->right != nullptr) {
                     while (v->right->right != nullptr)
@@ -54,8 +56,7 @@ private:
                     root->count = v->right->count;
                     p = v->right;
                     v->right = v->right->left;
-                }
-                else {
+                } else {
                     root->data = v->data;
                     root->count = v->count;
                     p = v;
@@ -96,7 +97,6 @@ private:
     int depthTree(Node* root) {
         if (root == nullptr)
             return 0;
-
         int right = depthTree(root->right);
         int left = depthTree(root->left);
         if (right >= left)
@@ -112,7 +112,8 @@ private:
         array.push_back(std::make_pair(root->count, root->data));
         getDataNodes(root->right, array);
     }
-public:
+
+ public:
     BST() : root(nullptr) {}
     ~BST() {
         delTree(root);
@@ -127,7 +128,7 @@ public:
     }
 
     int depth() {
-        depthTree(root);
+        return depthTree(root);
     }
 
     int search(T data) {
