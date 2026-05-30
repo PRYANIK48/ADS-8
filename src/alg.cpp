@@ -1,15 +1,15 @@
 // Copyright 2021 NNTU-CS
-#pragma once
 #include  <iostream>
 #include  <fstream>
 #include  <locale>
 #include  <cstdlib>
 #include  <vector>
-#include  "bst.h"
 #include <algorithm>
+#include <utility>
+#include <string>
+#include  "bst.h"
 
 void makeTree(BST<std::string>& tree, const char* filename) {
-
     std::ifstream file(filename);
 
     if (!file) {
@@ -18,17 +18,14 @@ void makeTree(BST<std::string>& tree, const char* filename) {
     while (!file.eof()) {
         std::string word = "";
         bool isReadingWord = true;
-        while (isReadingWord)
-        {
+        while (isReadingWord) {
             int symbol = file.get();
             if ('A' <= symbol && symbol <= 'Z') {
                 symbol += ('a' - 'A');
                 word += symbol;
-            }
-            else if ('a' <= symbol && symbol <= 'z') {
+            } else if ('a' <= symbol && symbol <= 'z') {
                 word += symbol;
-            }
-            else {
+            } else {
                 isReadingWord = false;
             }
         }
