@@ -104,11 +104,11 @@ class BST {
     }
 
     void getDataNodes(Node* root, std::vector<std::pair<int, T>>& array) const {
-        if (root == nullptr) 
-            return;
+        if (root) {
         getDataNodes(root->left, array);
         array.push_back(std::make_pair(root->count, root->data));
         getDataNodes(root->right, array);
+        }
     }
 
  public:
